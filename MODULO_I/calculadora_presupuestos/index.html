@@ -4,8 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>calculadora de presupuesto</title>
+    <link rel="stylesheet" href="./estilos/styles.css">
   </head>
   <body>
-    <script src="app.js" defer></script>
+    <header class="container">
+      <h1>Calculadora de Presupuestos</h1>
+      <p class="subtitle">
+        Ingresa tus ingresos y tus gastos para calcular el balance y un rango de
+        ahorro recomendado.
+      </p>
+    </header>
+    <main class="container">
+      <div id="errors" class="alert" role="alert" aria-live="polite" hidden></div>
+
+      <form id="budget-form" class="card"  >
+        <fieldset>
+          <legend>Ingresa tus datos</legend>
+          <div class="field">
+            <label for="ingresos"> Ingresos Mensuales: </label>
+            <input id="income" name="income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="ej: 150000" required  />
+            <small id="income-help" class="help">Solo nùmeros >= 0. Usa punto para decimales (ej: 1234.56)</small>
+          </div>
+          <div class="field">
+            <label for="expenses"> Gastos Seprados por linea</label>
+            <textarea id="expenses" rows="5" cols="30" placeholder="ej: 200000 (arriendo) 1500000 (mercado) 90000(transporte)"></textarea>
+            <small id="expenses-help" class="help">Ingresa cada gasto en una linea. Solo nùmeros >= 0. Usa punto para decimales (ej: 1234.56)</small>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn">Calcular</button>
+            <button id="reset" type="button" class="btn btn-secondary">Limpiar</button>
+            <button id="demo" type="button" class="btn btn-ghost">Demo</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <section class="card" aria-labelledby="results-title">
+        
+        <h2 id="results-title">Resultados</h2>
+
+        <div id="results" class="results" aria-live="polite">
+          <p>Completa el formulario y presiona <em>Calcular</em>.</p>
+        </div>
+        <div class="grid">
+          <div class="metric">
+            <span class="metric-label">Ingresos:</span>
+            <output id="out-income" class="metric-value">_</output>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Total de Gastos:</span>
+            <output id="out-expenses" class="metric-value">_</output>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Balance:</span>
+            <output id="out-balance" class="metric-value">_</output>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Ahorro Recomendado:</span>
+            <output id="out-savings" class="metric-value">_</output>
+          </div>
+      </section>
+
+    </main>
+
+    
   </body>
+  <script src="./app.js"></script>
 </html>
